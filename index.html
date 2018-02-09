@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deploying Often is a Very Good Idea</title>
+    <link rel="stylesheet" href="presentation.css">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, height=device-height, initial-scale=1" name="viewport">
+  </head>
+  <body>
+
+    <header>
+      <h1>Deploying Often is a Very Good Idea</h1>
+      <p>
+        This is a B-Side from one of my other talks, <a href="http://pushtrain.club">The Push Train</a>. I had to edit this section out of the delivered version, but thought it was worth putting it online.
+      </p>
+      <p>
+        Here are <a href="https://speakerdeck.com/mcfunley">my other talks</a>,
+        <a href="http://mcfunley.com">my website</a>, and
+        <a href="https://medium.com/@mcfunley/latest">some Medium posts</a>.
+      </p>
+
+      <div class="share">
+  <a class="twitter-share-button" href="https://twitter.com/intent/tweet"
+      data-via="mcfunley"
+     data-size="large">
+    Tweet
+  </a>
+
+    <a class="twitter-follow-button" href="https://twitter.com/mcfunley"
+       data-show-count="false"
+       data-size="large">
+      Follow @mcfunley
+    </a>
+
+</div>
+    </header>
+
+    <div class="presentation">
+      <table class="slides">
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.001.jpeg" />
+            </td>
+            <td class="note">
+              <a name="1"></a>
+              Hey, I wrote these slides for a different talk and had to cut them out. But I think they’re ok!
+              <a href="#1">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.002.jpeg" />
+            </td>
+            <td class="note">
+              <a name="2"></a>
+              What the hell are we trying to do in software? <br /><br />Well, if we’re talking about an application on the internet, I can think of two big goals.
+              <a href="#2">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.003.jpeg" />
+            </td>
+            <td class="note">
+              <a name="3"></a>
+              We have to ship a bunch of stuff. It’s our job as engineers to change things. That is the job.
+              <a href="#3">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.004.jpeg" />
+            </td>
+            <td class="note">
+              <a name="4"></a>
+              And, we don’t want to destroy everything of value that we’ve already built when we do that.
+              <a href="#4">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.005.jpeg" />
+            </td>
+            <td class="note">
+              <a name="5"></a>
+              The first thing you might notice about those goals is that the second one isn’t possible.<br /><br />Or at least all industry experience suggests this. No significant web service yet conceived has never been down. S3 was down a while back. It was chaos.<br /><br />We can take this as a fact of life. Production breaks.
+              <a href="#5">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.006.jpeg" />
+            </td>
+            <td class="note">
+              <a name="6"></a>
+              The only thing we can do then, here on Earth, is try to minimize the length of time that production is broken.
+              <a href="#6">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.007.jpeg" />
+            </td>
+            <td class="note">
+              <a name="7"></a>
+              Anytime we deploy code, there’s some chance that it’s going to break something. We’ve got a probability of breakage, given a deploy.
+              <a href="#7">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.008.jpeg" />
+            </td>
+            <td class="note">
+              <a name="8"></a>
+              And that gets multiplied by the number of times we try to deploy code.
+              <a href="#8">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.009.jpeg" />
+            </td>
+            <td class="note">
+              <a name="9"></a>
+              And then the time that production is down over some interval is the average time it takes us to fix it, times the number of times we take it down.
+              <a href="#9">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.010.jpeg" />
+            </td>
+            <td class="note">
+              <a name="10"></a>
+              The key insight of continuous delivery is that these aren’t fixed quantities. In practice each of them actually depends on the values you pick for the others. <br />
+              <a href="#10">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.011.jpeg" />
+            </td>
+            <td class="note">
+              <a name="11"></a>
+              It turns out that if you crank up the number of deploys you do, the probability that any given deploy breaks declines.<br />
+              <a href="#11">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.012.jpeg" />
+            </td>
+            <td class="note">
+              <a name="12"></a>
+              The time to fix a given broken deploy also declines if you crank up the number of deploys.<br /><br />Deploys—the first term—obviously increase. <br /><br />But I have become a believer that cranking it up is a win holistically, and has the practical effect of minimizing the value of this formula.
+              <a href="#12">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.013.jpeg" />
+            </td>
+            <td class="note">
+              <a name="13"></a>
+              One reason this is true is that the longer it’s been since we last deployed, the more likely it is that the next deploy is going to break.
+              <a href="#13">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.014.jpeg" />
+            </td>
+            <td class="note">
+              <a name="14"></a>
+              If you haven’t deployed since last month, the deploy tools themselves are most likely broken. You’ve either broken them directly with untested changes, or you’ve got IP addresses hardcoded in there and your infrastructure has changed, or who knows what. <br />
+              <a href="#14">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.015.jpeg" />
+            </td>
+            <td class="note">
+              <a name="15"></a>
+              Another less-than-intuitive thing we should consider is that if deploys take a long time, this is dangerous. Even if they work reliably, slow deploys are not neutral.
+              <a href="#15">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.016.jpeg" />
+            </td>
+            <td class="note">
+              <a name="16"></a>
+              If the deploy tooling isn’t made fast, there’s probably a faster and more dangerous way to do things and people will do that instead. They’ll replace running docker containers by hand. They’ll hand-edit files on the hosts.<br /><br />So we want to make the “right way” to ship code also the laziest possible way.
+              <a href="#16">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.017.jpeg" />
+            </td>
+            <td class="note">
+              <a name="17"></a>
+              Even if we could avoid shipping quickly most of the time, we’ll occasionally have to push in a big hurry.<br /><br />
+              <a href="#17">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.018.jpeg" />
+            </td>
+            <td class="note">
+              <a name="18"></a>
+              Bad things happen in production, and they have to mitigated quickly. An actively-exploited SQL injection flaw is one example. These things come up in real life.
+              <a href="#18">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.019.jpeg" />
+            </td>
+            <td class="note">
+              <a name="19"></a>
+              And when they do, you don’t want to be trying to use a poorly tested “fast path” in a crisis. That’s making an already bad situation downright dangerous.<br />
+              <a href="#19">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.020.jpeg" />
+            </td>
+            <td class="note">
+              <a name="20"></a>
+              If you deploy infrequently, that also means you wrote the code farther into the past. That’s bad.
+              <a href="#20">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.021.jpeg" />
+            </td>
+            <td class="note">
+              <a name="21"></a>
+              You have great understanding of what code is doing when you’re writing it. Then your comprehension of it gets strictly worse over time. <br /><br />After a week or so you may barely have any idea what it was you were trying to accomplish. This is bad news if you find yourself having to debug a problem with it in production after deploying it.
+              <a href="#21">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.022.jpeg" />
+            </td>
+            <td class="note">
+              <a name="22"></a>
+              And if you’re deploying infrequently, you’re also shipping a lot more code at once. This is a terrible idea.
+              <a href="#22">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.023.jpeg" />
+            </td>
+            <td class="note">
+              <a name="23"></a>
+              Every senior engineer knows to look at this page with a high level of panic. This is a merge that is definitely not going to go well. You can feel it in your bones.
+              <a href="#23">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.024.jpeg" />
+            </td>
+            <td class="note">
+              <a name="24"></a>
+              Every single line of code you deploy has some probability of breaking the site. So if you deploy a lot of lines of code at once, you’re going break the site. You just will.<br />
+              <a href="#24">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.025.jpeg" />
+            </td>
+            <td class="note">
+              <a name="25"></a>
+              You also stand a better chance of inspecting code for correctness the less of it there is.<br /><br />
+              <a href="#25">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.026.jpeg" />
+            </td>
+            <td class="note">
+              <a name="26"></a>
+              When you change a bunch of lines, in theory each of them might interact with every other thing you have. <br /><br />The author of the commit can have a pretty good idea of which potential interactions are important, so coding is generally a tractable activity. It sort of works anyway. <br /><br />But someone tasked with reviewing the code has much less context.
+              <a href="#26">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.027.jpeg" />
+            </td>
+            <td class="note">
+              <a name="27"></a>
+              So the amount of effort it takes to wrap your head around a changeset scales quadratically with the number of lines in it. Two small diffs tend to be easier to check for correctness than one large one. <br /><br />If you’re trying to look at a diff that was deployed and figure out what went wrong with it, the problem is the same. <br /><br />
+              <a href="#27">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.028.jpeg" />
+            </td>
+            <td class="note">
+              <a name="28"></a>
+              One solution to all of these problems would be to just avoid pushing lines of code. But we’d get fired pretty quickly if we did that. We have to ship a lot of code.
+              <a href="#28">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.029.jpeg" />
+            </td>
+            <td class="note">
+              <a name="29"></a>
+              Deploying often means that we’ve exercised all of our tooling recently, and we can be confident that it works.
+              <a href="#29">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.030.jpeg" />
+            </td>
+            <td class="note">
+              <a name="30"></a>
+              Deploying sufficiently often means the deploy pipeline has to be fast. Which means there’s not a faster hacky way to deploy. Deploying often keeps us on the blessed path.
+              <a href="#30">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.031.jpeg" />
+            </td>
+            <td class="note">
+              <a name="31"></a>
+              That also means that when something breaks, we’ll have a short path to fixing it.
+              <a href="#31">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.032.jpeg" />
+            </td>
+            <td class="note">
+              <a name="32"></a>
+              Deploying often minimizes the chances that any given deploy is broken. We’ll get a lot of little deploys through with no problems. If we deploy in huge chunks, we’ll definitely have problems with them in production.
+              <a href="#32">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.033.jpeg" />
+            </td>
+            <td class="note">
+              <a name="33"></a>
+              And when we encounter faults, we’ll more clearly understand what we were trying to accomplish.
+              <a href="#33">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.034.jpeg" />
+            </td>
+            <td class="note">
+              <a name="34"></a>
+              And we’ll have an easier time figuring out what’s broken if we just pushed a few dozen lines. The broken thing is something in that dozen lines. Not, as in other cases, some small thing in an epic pile of thousands of lines of code.
+              <a href="#34">#</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="slide">
+              <img src="slides/slides.035.jpeg" />
+            </td>
+            <td class="note">
+              <a name="35"></a>
+
+              <a href="#35">#</a>
+            </td>
+          </tr>
+
+      </table>
+    </div>
+
+    <footer>
+      <div class="share">
+  <a class="twitter-share-button" href="https://twitter.com/intent/tweet"
+      data-via="mcfunley"
+     data-size="large">
+    Tweet
+  </a>
+
+    <a class="twitter-follow-button" href="https://twitter.com/mcfunley"
+       data-show-count="false"
+       data-size="large">
+      Follow @mcfunley
+    </a>
+
+</div>
+
+      <p>
+        Generated with
+        <a href="https://github.com/mcfunley/better-keynote-export">
+          better-keynote-export</a>.
+      </p>
+    </footer>
+
+    <script>
+     window.twttr = (function(d, s, id) {
+       var js, fjs = d.getElementsByTagName(s)[0],
+           t = window.twttr || {};
+       if (d.getElementById(id)) return t;
+       js = d.createElement(s);
+       js.id = id;
+       js.src = "https://platform.twitter.com/widgets.js";
+       fjs.parentNode.insertBefore(js, fjs);
+
+       t._e = [];
+       t.ready = function(f) {
+         t._e.push(f);
+       };
+
+       return t;
+     }(document, "script", "twitter-wjs"));
+    </script>
+  </body>
+</html>
